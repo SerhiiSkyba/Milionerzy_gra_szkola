@@ -1,38 +1,45 @@
-import tkinter as tk
-import mysql.connector
-import random
+import customtkinter as ctk
+from tkinter import *
 
-listpyt=[]
-listodp=[]
-listnum=[]
-listodpA=[]
-listodpB=[]
-listodpC=[]
-listodpD=[]
+windowstart=ctk.CTk()
+bg = PhotoImage(file = "milioner2.png")
+img = PhotoImage(file = "MilionerzyLogo.ico") 
+windowstart.resizable(False,False)
+windowstart.geometry("560x500")
+windowstart.title("Gra Milionerzy")
+windowstart.iconphoto(False, img)
+font_default = ("Inter",16,'normal')
+font_pytanie = ("Inter",16,'bold')
+font_color='#121212'
+width=25
+height=1
 
-#Łączy bazę danych MySQL z projektem
-MySQL = mysql.connector.connect(
-            host = 'localhost',
-            user = 'admin',
-            passwd = 'Admin',
-            database = 'pytania')
-cursor = MySQL.cursor()
-cursor.execute('select * from pytania_do_pracy')
-records = cursor.fetchall()
+def start():
+    windowstart.destroy()
+    from Main import windowgra
+   
 
-#Konwertuje dane tabeli MySQL w listy
-for row in records:
-    listnum.append(row[0])
-    listpyt.append(row[1])
-    listodp.append(row[2])
-    listodpA.append(row[3])
-    listodpB.append(row[4])
-    listodpC.append(row[5])
-    listodpD.append(row[6])
-print(listodp)  
-print(listpyt)
-print(listnum)
-print(listodpA)  
-print(listodpB)
-print(listodpC)
-print(listodpD)
+def quit():
+    windowstart.destroy()
+
+limg= Label(windowstart, i=bg)
+frame = ctk.CTkFrame(windowstart)
+Start = ctk.CTkButton(frame,
+                 text="rozpocznij grę",
+                 font=font_default,
+                 corner_radius=0,
+                 command=lambda: start())
+Quit = ctk.CTkButton(frame,
+                 text="wyjdź",
+                 font=font_default,
+                 corner_radius=0,
+                 command=lambda: quit())
+
+
+Quit.pack(side=LEFT, expand = True, fill = BOTH)
+Start.pack(side=LEFT, expand = True, fill = BOTH)
+frame.pack(side = BOTTOM,expand = True, fill = BOTH)
+
+limg.pack()
+
+windowstart.mainloop()
