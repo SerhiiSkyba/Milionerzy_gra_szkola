@@ -1,13 +1,18 @@
+import os
+import sys
+
+if sys.argv:
+    filepath = sys.argv[0]
+    folder, filename = os.path.split(filepath)
+    os.chdir(folder) # now your working dir is the parent folder of the script
 import customtkinter as ctk
 from tkinter import *
 
 windowstart=ctk.CTk()
 bg = PhotoImage(file = "milioner2.png")
-img = PhotoImage(file = "MilionerzyLogo.ico") 
 windowstart.resizable(False,False)
 windowstart.geometry("560x500")
 windowstart.title("Gra Milionerzy")
-windowstart.iconphoto(False, img)
 font_default = ("Inter",16,'normal')
 font_pytanie = ("Inter",16,'bold')
 font_color='#121212'
